@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asim Ayaz — DevOps Engineer</title>
+<meta name="description" content="Asim Ayaz — DevOps Engineer from Mardan, Pakistan. CS student at UET Mardan specializing in Linux, Docker, and infrastructure engineering.">
+<meta property="og:title" content="Asim Ayaz — DevOps Engineer">
+<meta property="og:description" content="CS student at UET Mardan. Building infrastructure, containerizing systems, engineering the future.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Root ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --bg:          #080C10;
+  --bg-card:     #0D1117;
+  --bg-elevated: #161B22;
+  --border:      #21262D;
+  --text:        #E6EDF3;
+  --text-muted:  #7D8590;
+  --text-dim:    #484F58;
+  --cyan:        #00D9FF;
+  --cyan-dim:    rgba(0,217,255,0.08);
+  --cyan-glow:   rgba(0,217,255,0.15);
+  --green:       #3FB950;
+  --mono:        'JetBrains Mono', monospace;
+  --sans:        'Inter', sans-serif;
+  --radius:      6px;
+  --transition:  0.2s ease;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle grid overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,217,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,217,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+::selection { background: var(--cyan); color: var(--bg); }
+
+/* ── Nav ──────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+  padding: 1.25rem 0;
+}
+.nav.scrolled {
+  background: rgba(8,12,16,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--cyan); }
+
+/* ── Hero ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0 6rem;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Terminal */
+.terminal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0,217,255,0.05), 0 20px 60px rgba(0,0,0,0.6);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+.terminal-bar {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+.terminal-body {
+  padding: 1.5rem;
+  min-height: 280px;
+}
+.t-line {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+}
+.t-prompt { color: var(--green); user-select: none; flex-shrink: 0; }
+.t-cmd { color: var(--cyan); }
+.t-out { color: var(--text-muted); padding-left: 1.2rem; }
+.t-out.highlight { color: var(--text); }
+.cursor {
+  display: inline-block;
+  width: 8px; height: 1.1em;
+  background: var(--cyan);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Hero copy */
+.hero-copy { }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--cyan);
+}
+.hero-name {
+  font-family: var(--mono);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+.hero-title {
+  font-family: var(--mono);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.hero-title span { color: var(--cyan); }
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 44ch;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--cyan);
+  color: var(--bg);
+}
+.btn-primary:hover {
+  background: #33E0FF;
+  box-shadow: 0 0 20px var(--cyan-glow);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+/* ── Section Base ─────────────────────────────────── */
+section { padding: 7rem 0; position: relative; z-index: 1; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before { content: '$'; color: var(--text-dim); }
+.section-title {
+  font-family: var(--mono);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 52ch;
+  line-height: 1.8;
+  margin-bottom: 3.5rem;
+}
+
+/* ── About ────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-stats {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-item {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+.stat-item:hover { background: var(--bg-elevated); }
+.stat-value {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+.about-text p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--text); font-weight: 500; }
+.about-meta {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 0.75rem;
+}
+.meta-row {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+.meta-key { color: var(--text-dim); min-width: 100px; }
+.meta-val { color: var(--text-muted); }
+.meta-val a { color: var(--cyan); text-decoration: none; }
+.meta-val a:hover { text-decoration: underline; }
+
+/* ── Skills ───────────────────────────────────────── */
+.skills { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.skill-group {
+  background: var(--bg);
+  padding: 2rem;
+  transition: var(--transition);
+}
+.skill-group:hover { background: var(--bg-elevated); }
+.skill-group-title {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.skill-group-title::before { content: '//'; color: var(--text-dim); }
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-tag {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+.skill-tag:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+.skill-tag.primary {
+  border-color: rgba(0,217,255,0.3);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+/* ── Projects ─────────────────────────────────────── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1px;
+}
+.project-card {
+  background: var(--bg-card);
+  padding: 2rem;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.project-card:hover::before { transform: scaleX(1); }
+.project-card:hover { background: var(--bg-elevated); }
+.project-number {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.project-name {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  flex: 1;
+}
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.stack-tag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-dim);
+}
+.project-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+.project-link {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+.project-link:hover { color: var(--cyan); }
+.project-link svg { width: 13px; height: 13px; }
+
+/* Featured project — full width */
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.featured-left { display: flex; flex-direction: column; gap: 1rem; }
+.featured-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border: 1px solid rgba(0,217,255,0.2);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+/* ── Contact ──────────────────────────────────────── */
+.contact { background: var(--bg-card); border-top: 1px solid var(--border); }
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.contact-copy { }
+.contact-copy p {
+  font-size: 0.97rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.contact-links {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.contact-link-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--bg);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.contact-link-item:hover {
+  background: var(--bg-elevated);
+}
+.contact-link-item:hover .cli-label { color: var(--cyan); }
+.cli-icon {
+  width: 36px; height: 36px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+.cli-info { flex: 1; }
+.cli-label {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.1rem;
+  transition: var(--transition);
+}
+.cli-val {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.cli-arrow {
+  font-family: var(--mono);
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  transition: var(--transition);
+}
+.contact-link-item:hover .cli-arrow { color: var(--cyan); transform: translateX(3px); }
+
+/* Terminal contact side */
+.contact-terminal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+.ct-bar {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ct-bar-title { font-size: 0.7rem; color: var(--text-dim); margin-left: auto; margin-right: auto; }
+.ct-body { padding: 1.5rem; }
+.ct-line { margin-bottom: 0.4rem; }
+.ct-comment { color: var(--text-dim); }
+.ct-key { color: #79C0FF; }
+.ct-val { color: #A5D6FF; }
+.ct-string { color: #A8FF78; }
+.ct-bracket { color: var(--text-muted); }
+
+/* ── Footer ───────────────────────────────────────── */
+footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.footer-copy span { color: var(--cyan); }
+.footer-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ── Scroll reveal ────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-copy { order: -1; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: auto; grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  section { padding: 5rem 0; }
+  .hero { padding: 6rem 0 4rem; }
+  .hero-actions { flex-direction: column; }
+  .btn { justify-content: center; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ─────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">asim<span>@</span>ayaz<span>:~$</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Terminal -->
+      <div class="terminal reveal">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="terminal-title">asim@devops ~ bash</div>
+        </div>
+        <div class="terminal-body" id="terminal-body">
+          <!-- typed by JS -->
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="hero-copy reveal" style="transition-delay:0.15s">
+        <p class="hero-eyebrow">Available for opportunities</p>
+        <h1 class="hero-name">Asim<br>Ayaz</h1>
+        <p class="hero-title">DevOps Engineer <span>/</span> Systems Thinker</p>
+        <p class="hero-desc">
+          CS student at UET Mardan building real infrastructure —
+          containerizing systems, engineering deployments, and
+          closing the gap between code and production.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h7A2.5 2.5 0 0 1 14 2.5v9.5a.5.5 0 0 1-.5.5H10v2a.5.5 0 0 1-.764.424L8 13.674l-1.236.75A.5.5 0 0 1 6 14v-2H2.5a.5.5 0 0 1-.5-.5z"/></svg>
+            View Projects
+          </a>
+          <a href="#contact" class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></svg>
+            Get In Touch
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── About ────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label reveal">whoami</p>
+    <h2 class="section-title reveal">About Me</h2>
+    <p class="section-sub reveal">The person behind the terminal.</p>
+
+    <div class="about-grid">
+      <div class="about-stats reveal">
+        <div class="stat-item">
+          <div class="stat-value">2nd</div>
+          <div class="stat-label">Semester, UET Mardan</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">3.6</div>
+          <div class="stat-label">Current GPA</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4+</div>
+          <div class="stat-label">Deployed Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">1yr</div>
+          <div class="stat-label">Linux Daily Driver</div>
+        </div>
+      </div>
+
+      <div class="about-text reveal" style="transition-delay:0.1s">
+        <p>
+          I'm a CS student at <strong>University of Engineering & Technology Mardan</strong>
+          pursuing a career in DevOps and infrastructure engineering. While most students
+          are still writing their first "Hello World", I'm containerizing C++ shells,
+          deploying real client websites, and debugging Content Security Policies at
+          the HTTP header layer.
+        </p>
+        <p>
+          I've been running <strong>Linux as my primary OS for over a year</strong> —
+          Fedora as daily driver, Ubuntu in VMs — and I hold CCNA-level networking
+          knowledge. I don't just learn tools, I build with them. Every project on this
+          page is deployed, real, and solves an actual problem.
+        </p>
+        <p>
+          Outside of engineering, I read Camus, Dostoevsky, and Marcus Aurelius.
+          I believe the discipline of Stoicism and the relentlessness of David Goggins
+          apply directly to engineering: do the hard thing, finish what you start,
+          build something that matters.
+        </p>
+        <div class="about-meta">
+          <div class="meta-row">
+            <span class="meta-key">location</span>
+            <span class="meta-val">Mardan, Pakistan 🇵🇰</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">university</span>
+            <span class="meta-val">UET Mardan — CS</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">internship</span>
+            <span class="meta-val">Data Mining @ GOA Tek</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">github</span>
+            <span class="meta-val"><a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener">asimayazmrd0987-glitch</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ───────────────────────────────────────── -->
+<section id="skills" class="skills">
+  <div class="container">
+    <p class="section-label reveal">ls ./skills</p>
+    <h2 class="section-title reveal">Technical Stack</h2>
+    <p class="section-sub reveal">Tools I build with, systems I understand at the mechanism level.</p>
+
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Infrastructure & DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">Docker</span>
+          <span class="skill-tag primary">Linux</span>
+          <span class="skill-tag primary">Bash</span>
+          <span class="skill-tag">Vercel</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">Nginx</span>
+          <span class="skill-tag">SSH</span>
+          <span class="skill-tag">cgroups</span>
+          <span class="skill-tag">namespaces</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">C++</span>
+          <span class="skill-tag primary">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">JSON</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Systems & Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">TCP/IP</span>
+          <span class="skill-tag primary">CCNA-level</span>
+          <span class="skill-tag">DNS</span>
+          <span class="skill-tag">HTTP/HTTPS</span>
+          <span class="skill-tag">CSP Headers</span>
+          <span class="skill-tag">Firewalls</span>
+          <span class="skill-tag">Subnetting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools & Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag primary">Git</span>
+          <span class="skill-tag primary">GitHub</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Fedora</span>
+          <span class="skill-tag">Ubuntu</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Node.js</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ──────────────────────────────────────── -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">ls ./projects</p>
+    <h2 class="section-title reveal">Projects</h2>
+    <p class="section-sub reveal">Built, deployed, real. Every link works.</p>
+
+    <div class="projects-grid">
+
+      <!-- Featured: KDL -->
+      <div class="project-card featured reveal">
+        <div class="featured-left">
+          <div>
+            <span class="featured-badge">★ Featured</span>
+          </div>
+          <div class="project-number">01 / CLIENT PROJECT</div>
+          <div class="project-name">Kuwait Diagnostic<br>Laboratory</div>
+          <p class="project-desc">
+            Full production website for a real medical diagnostic lab.
+            Multi-step WhatsApp appointment booking form, scroll animations,
+            intersection observer reveals, honeypot bot protection, and
+            client-side rate limiting. Diagnosed and fixed a CSP misconfiguration
+            at the HTTP header layer using vercel.json — meta tags don't count
+            as real security headers, the server layer does.
+          </p>
+          <div class="project-stack">
+            <span class="stack-tag">HTML</span>
+            <span class="stack-tag">CSS</span>
+            <span class="stack-tag">JavaScript</span>
+            <span class="stack-tag">Vercel</span>
+            <span class="stack-tag">CSP Headers</span>
+            <span class="stack-tag">WhatsApp API</span>
+          </div>
+        </div>
+        <div class="featured-right">
+          <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;font-family:var(--mono);font-size:0.78rem;">
+            <div style="color:var(--text-dim);margin-bottom:0.75rem;"># vercel.json — real HTTP headers</div>
+            <div style="color:#79C0FF;">headers<span style="color:var(--text-muted)">: [{</span></div>
+            <div style="padding-left:1rem;color:#A5D6FF;">source<span style="color:var(--text-muted)">: </span><span style="color:#A8FF78;">"/(.*)"</span><span style="color:var(--text-muted)">,</span></div>
+            <div style="padding-left:1rem;color:#79C0FF;">headers<span style="color:var(--text-muted)">: [</span></div>
+            <div style="padding-left:2rem;color:var(--text-dim)">{ key: <span style="color:#A8FF78;">"X-Frame-Options"</span>,</div>
+            <div style="padding-left:2.5rem;color:var(--text-dim)">  val: <span style="color:#A8FF78;">"DENY"</span> },</div>
+            <div style="padding-left:2rem;color:var(--text-dim)">{ key: <span style="color:#A8FF78;">"CSP"</span>,</div>
+            <div style="padding-left:2.5rem;color:var(--text-dim)">  val: <span style="color:#A8FF78;">"..."</span> }</div>
+            <div style="padding-left:1rem;color:var(--text-muted)">]</div>
+            <div style="color:var(--text-muted)">}]</div>
+          </div>
+          <div class="project-links">
+            <a href="https://kuwait-diagnostic-laboratory-websit.vercel.app/" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              Live Site
+            </a>
+            <a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web Linux -->
+      <div class="project-card reveal">
+        <div class="project-number">02 / WEB APP</div>
+        <div class="project-name">Web Linux Simulation</div>
+        <p class="project-desc">
+          A full Ubuntu desktop OS simulated entirely in the browser.
+          State-machine boot sequence, window manager, dock, app launcher,
+          Alt+Tab switching, notifications, and theme system.
+          Built with React 19, TypeScript, Vite, Tailwind CSS v3,
+          and a Redux-like custom useOSStore hook.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">React 19</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Vite</span>
+          <span class="stack-tag">Tailwind</span>
+          <span class="stack-tag">shadcn/ui</span>
+        </div>
+        <div class="project-links">
+          <a href="https://web-linux-delta.vercel.app/" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/></svg>
+            Live Demo
+          </a>
+          <a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+
+      <!-- DevOps Dojo -->
+      <div class="project-card reveal" style="transition-delay:0.1s">
+        <div class="project-number">03 / DEVOPS TOOL</div>
+        <div class="project-name">DevOps Dojo</div>
+        <p class="project-desc">
+          A developer tooling platform targeting the DevOps workflow.
+          Dockerfile generator, security headers generator, and utilities
+          for the Pakistani developer community. Built to solve the exact
+          problems I ran into while learning infrastructure engineering.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">Vercel</span>
+          <span class="stack-tag">DevOps</span>
+        </div>
+        <div class="project-links">
+          <a href="https://dev-ops-dojo.vercel.app/" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/></svg>
+            Live Site
+          </a>
+          <a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+
+      <!-- MyShell -->
+      <div class="project-card reveal">
+        <div class="project-number">04 / SYSTEMS</div>
+        <div class="project-name">MyShell — C++ Shell</div>
+        <p class="project-desc">
+          A cross-platform shell interpreter in C++ demonstrating 13 OOP
+          concepts: abstract base classes, polymorphism, RAII, operator
+          overloading, templates, static members, and the Command pattern.
+          Complete with command history, session stats, file logger,
+          and now containerized with a multi-stage Docker build.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">C++17</span>
+          <span class="stack-tag">OOP</span>
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag">Alpine</span>
+          <span class="stack-tag">Multi-stage</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- API Playground -->
+      <div class="project-card reveal" style="transition-delay:0.1s">
+        <div class="project-number">05 / TOOL</div>
+        <div class="project-name">API Testing Playground</div>
+        <p class="project-desc">
+          A lightweight browser-based API testing tool — a minimal
+          Postman alternative. Send HTTP requests, inspect responses,
+          set headers, and test endpoints without leaving the browser.
+          Built to solve a real developer workflow problem.
+        </p>
+        <div class="project-stack">
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">Fetch API</span>
+          <span class="stack-tag">GitHub</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/asimayazmrd0987-glitch/API-Testing-Playground" target="_blank" rel="noopener" class="project-link">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ───────────────────────────────────────── -->
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="section-label reveal">./contact.sh</p>
+    <h2 class="section-title reveal">Get In Touch</h2>
+    <p class="section-sub reveal">Open to internships, collaborations, and interesting problems.</p>
+
+    <div class="contact-inner">
+      <div class="contact-copy reveal">
+        <p>
+          I'm actively looking for DevOps internships and junior engineering
+          roles where I can contribute to real infrastructure. If you're building
+          something serious and need someone who understands systems at the
+          kernel level — not just the framework layer — let's talk.
+        </p>
+        <p>
+          I respond fastest on GitHub and X. For professional enquiries,
+          reach out on any platform below.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/asimayazmrd0987-glitch" target="_blank" rel="noopener" class="contact-link-item">
+            <div class="cli-icon">🐙</div>
+            <div class="cli-info">
+              <span class="cli-label">GitHub</span>
+              <span class="cli-val">asimayazmrd0987-glitch</span>
+            </div>
+            <span class="cli-arrow">→</span>
+          </a>
+          <a href="https://x.com/AsimAyaz0" target="_blank" rel="noopener" class="contact-link-item">
+            <div class="cli-icon">𝕏</div>
+            <div class="cli-info">
+              <span class="cli-label">X (Twitter)</span>
+              <span class="cli-val">@AsimAyaz0</span>
+            </div>
+            <span class="cli-arrow">→</span>
+          </a>
+          <a href="https://kuwait-diagnostic-laboratory-websit.vercel.app/" target="_blank" rel="noopener" class="contact-link-item">
+            <div class="cli-icon">🌐</div>
+            <div class="cli-info">
+              <span class="cli-label">Live Projects</span>
+              <span class="cli-val">vercel.app deployments</span>
+            </div>
+            <span class="cli-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-terminal reveal" style="transition-delay:0.1s">
+        <div class="ct-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="ct-bar-title">contact.json</div>
+        </div>
+        <div class="ct-body">
+          <div class="ct-line ct-bracket">{</div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"name"</span><span class="ct-bracket">: </span><span class="ct-string">"Asim Ayaz"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"role"</span><span class="ct-bracket">: </span><span class="ct-string">"DevOps Engineer"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"location"</span><span class="ct-bracket">: </span><span class="ct-string">"Mardan, Pakistan"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"university"</span><span class="ct-bracket">: </span><span class="ct-string">"UET Mardan"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"status"</span><span class="ct-bracket">: </span><span class="ct-string" style="color:#3FB950">"open_to_work"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"skills"</span><span class="ct-bracket">: [</span></div>
+          <div class="ct-line"><span style="padding-left:2rem" class="ct-string">"Linux"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:2rem" class="ct-string">"Docker"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:2rem" class="ct-string">"C++"</span><span class="ct-bracket">,</span></div>
+          <div class="ct-line"><span style="padding-left:2rem" class="ct-string">"DevOps"</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-bracket">],</span></div>
+          <div class="ct-line"><span style="padding-left:1rem" class="ct-key">"github"</span><span class="ct-bracket">: </span><span class="ct-string">"asimayazmrd0987-glitch"</span></div>
+          <div class="ct-line ct-bracket">}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 <span>Asim Ayaz</span> — Built with zero frameworks. Pure HTML, CSS, JS.
+      </div>
+      <div class="footer-status">
+        <div class="status-dot"></div>
+        All systems operational
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Terminal Typewriter ──────────────────────────────
+const lines = [
+  { type: 'cmd',  text: 'whoami' },
+  { type: 'out',  text: 'asim-ayaz — DevOps Engineer', highlight: true },
+  { type: 'cmd',  text: 'cat about.txt' },
+  { type: 'out',  text: 'CS Student @ UET Mardan' },
+  { type: 'out',  text: 'Building infra since semester 1' },
+  { type: 'cmd',  text: 'docker ps --filter status=running' },
+  { type: 'out',  text: 'KDL-website    UP   (deployed)' },
+  { type: 'out',  text: 'web-linux       UP   (deployed)' },
+  { type: 'out',  text: 'devops-dojo     UP   (deployed)' },
+  { type: 'cmd',  text: 'uname -a' },
+  { type: 'out',  text: 'Linux | Docker | C++ | Fedora' },
+  { type: 'cmd',  text: '' },
+];
+
+const body = document.getElementById('terminal-body');
+let lineIndex = 0;
+let charIndex = 0;
+let currentEl = null;
+let isTyping = false;
+
+function createLine(type, text, highlight) {
+  const div = document.createElement('div');
+  div.className = 't-line';
+  if (type === 'cmd') {
+    const prompt = document.createElement('span');
+    prompt.className = 't-prompt';
+    prompt.textContent = '❯';
+    const cmd = document.createElement('span');
+    cmd.className = 't-cmd';
+    div.appendChild(prompt);
+    div.appendChild(cmd);
+    return { el: div, target: cmd };
+  } else {
+    div.className = 't-line t-out' + (highlight ? ' highlight' : '');
+    return { el: div, target: div };
+  }
+}
+
+function typeNextLine() {
+  if (lineIndex >= lines.length) {
+    // Add blinking cursor at end
+    const cursorLine = document.createElement('div');
+    cursorLine.className = 't-line';
+    const prompt = document.createElement('span');
+    prompt.className = 't-prompt';
+    prompt.textContent = '❯';
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    cursorLine.appendChild(prompt);
+    cursorLine.appendChild(cursor);
+    body.appendChild(cursorLine);
+    return;
+  }
+
+  const line = lines[lineIndex];
+  const { el, target } = createLine(line.type, line.text, line.highlight);
+  body.appendChild(el);
+  currentEl = target;
+  charIndex = 0;
+
+  if (line.type === 'out') {
+    target.textContent = line.text;
+    lineIndex++;
+    setTimeout(typeNextLine, 80);
+  } else {
+    typeChar(line.text);
+  }
+}
+
+function typeChar(text) {
+  if (charIndex <= text.length) {
+    currentEl.textContent = text.slice(0, charIndex);
+    charIndex++;
+    setTimeout(() => typeChar(text), charIndex === 0 ? 0 : 55);
+  } else {
+    lineIndex++;
+    setTimeout(typeNextLine, text === '' ? 0 : 180);
+  }
+}
+
+// Start typing after short delay
+setTimeout(typeNextLine, 800);
+
+// ── Nav scroll effect ────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Scroll reveal ────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Smooth scroll ────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
