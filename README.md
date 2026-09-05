@@ -2,7 +2,7 @@
 <br>
 
 <p align="center">
-  <img src="portfolio.png" alt="DSA Illustration" width="550"/>
+  <img src="portfolio.png" alt="DSA Illustration" width="750"/>
 </p>
 
 Check out my personal portfolio website, where I showcase my latest projects, technical skills, and professional experience. I would love to hear your thoughts and feedback!
