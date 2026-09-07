@@ -1,208 +1,87 @@
-# Multivariable Calculus Roadmap
+# BSH-141 Multivariable Calculus — Semester README
+**UET Mardan · Department of Computer Sciences · Fall 2026**
 
-A structured roadmap for learning **Multivariable Calculus**, from 3D vectors and space curves to multiple integration and vector calculus.
-
----
-
-## 📦 Block 1: 3D Space & Vectors
-
-**The setup**
-
-* Vectors in 2D/3D
-* Vector operations
-* Dot product
-
-  * Angle between vectors
-  * Projections
-* Cross product
-
-  * Area
-  * Normal vectors
-* Equations of lines and planes in 3D
-* Cylinders and quadric surfaces
-
-  * Spheres
-  * Paraboloids
-  * Ellipsoids
-  * Recognizing shapes from equations
+> Confirms the earlier guess: **BSH-141 (shown as BSH240 on the class timetable) = Multivariable Calculus**, taught by **Mr. Abdul Kabir**, Monday 10:00–1:00, CR-5. The timetable's other Monday slot (BSH110x, Ms. Shazia) is therefore Professional Practices by elimination.
 
 ---
 
-## 📦 Block 2: Vector-Valued Functions
+## Course Info
 
-* Space curves
+| Field | Detail |
+|---|---|
+| Code & Title | BSH-141 Multivariable Calculus |
+| Credit Hours | 3 |
+| Instructor | Mr. Abdul Kabir — Kabirabdul5008@gmail.com |
+| Lecture | 3 hrs/week (Mon 10:00–1:00) |
+| Office Hours | 3 hrs/week |
+| Assessments | 4 Assignments, 4 Quizzes, Mid-Term (Wk 9), Final (Wk 18) |
 
-  * `r(t) = <x(t), y(t), z(t)>`
-* Derivatives and integrals of vector functions
+## Grading Breakdown
 
-  * Velocity
-  * Acceleration
-* Arc length
-* Curvature
-* Motion in space
+| Component | Weight |
+|---|---|
+| Quizzes | 10% |
+| Assignments | 15% |
+| Mid-Term Exam | 25% |
+| Final Exam | 50% |
 
-  * Position
-  * Velocity
-  * Acceleration
-  * Physics-based applications
+**Note:** the Final alone is half your grade, and Weeks 10–18 (post-midterm) are where the syllabus gets genuinely harder — double integrals, vector calculus, Green's/Stokes'. Don't let the 9-week midterm finish line create a false sense that the course is winding down.
 
----
+## Textbook & References
 
-## 📦 Block 3: Differentiation in Several Variables
-
-* Functions of several variables
-* Domains
-* Level curves and level surfaces
-* Limits and continuity
-
-  * Multivariable limits are more subtle than single-variable limits
-  * A limit must exist along **every possible path** toward the point
-* Partial derivatives
-* Tangent planes
-* Linear approximations
-* Multivariable chain rule
-* Directional derivatives
-* Gradient vectors
-* Maximum and minimum values
-
-  * Critical points
-  * Second derivative test
-* Lagrange multipliers
-
-  * Optimization under constraints
+- **Primary:** Stewart, *Multivariable Calculus: Early Transcendentals*
+- Swokowski, Olinick & Pence — *Calculus and Analytical Geometry*
+- Briggs, Cochran & Gillett — *Multivariable Calculus* (2010, Pearson)
+- Anton & Herr — *Multivariable Calculus*
+- Robert T. Smith — *Multivariate Calculus*, 2nd Ed.
 
 ---
 
-## 📦 Block 4: Multiple Integration
+## Weekly Distribution
 
-* Double integrals over rectangles
-* Double integrals over general regions
-* Double integrals in polar coordinates
-* Applications
+| Week | Topic | CLO | Assessment |
+|---|---|---|---|
+| 1 | Basic concepts, level curves & surfaces, limits and continuity | 1 | — |
+| 2 | Partial derivatives, higher-order partial derivatives | 1, 2 | — |
+| 3 | Tangent plane, total differential | 2 | — |
+| 4 | Vector functions — derivative and integration | 2 | — |
+| 5 | Directional derivative — application | 2 | **A1 / Q1** |
+| 6 | Tangent planes and normal lines | 2 | — |
+| 7 | Extrema of functions of two variables, second partials test | 2 | **A2 / Q2** |
+| 8 | Extreme value theorem — application | 2 | — |
+| **9** | **Midterm Exam** | | |
+| 10 | Functions of several variables — partial derivatives, applications | 1, 3 | — |
+| 11 | Contour curves & 3D surfaces | 3 | — |
+| 12 | Double integrals and applications | 3 | **A3 / Q3** |
+| 13 | Triple, line, and surface integrals | 4 | — |
+| 14 | Gradient, divergence, and curl | 4 | **A4 / Q4** |
+| 15 | Green's and Stokes' theorems | 4 | — |
+| 16 | Divergence theorem and application | 4 | — |
+| 17 | Maxwell's equations and the wave equation | 4 | — |
+| **18** | **Final Exam** | | |
 
-  * Area
-  * Volume
-  * Mass
-  * Center of mass
-* Triple integrals
+## Course Learning Outcomes (CLOs)
 
-  * Rectangular coordinates
-  * Cylindrical coordinates
-  * Spherical coordinates
-* Change of variables
-* Jacobians
-
----
-
-## 📦 Block 5: Vector Calculus
-
-> Usually the final unit. Courses sometimes run out of time here, so getting ahead of this block is worthwhile.
-
-* Vector fields
-* Line integrals
-
-  * Scalar fields
-  * Vector fields
-* Fundamental Theorem for Line Integrals
-
-  * Conservative vector fields
-* Green's Theorem
-
-  * Relates a line integral around a closed curve to a double integral
-* Curl
-* Divergence
-* Surface integrals
-* Stokes' Theorem
-* Divergence Theorem
+| CLO | Statement | Taxonomy Level |
+|---|---|---|
+| CLO1 | State main ideas of multivariable, differential, and integral calculus | 2 |
+| CLO2 | Use mathematical language/notation to present solutions clearly | 3 |
+| CLO3 | Apply calculus to model real-world problems; connect geometric, analytic, numerical views | 3 |
+| CLO4 | Build rigorous formal mathematical arguments; apply basic logic | 3 |
 
 ---
 
-# 📝 Honest Notes
+## How This Maps to Your Study Plan
 
-### 1. Blocks 1–3 are the foundation
+Your Tuesday evening Deep-Focus slot (day after the Monday lecture) is where self-study on that week's topic happens — timed so the lecture is still fresh.
 
-In many courses, **Blocks 1–3 make up a large portion of the exam material** and are highly learnable once the patterns become familiar.
+A few things worth flagging as you go:
 
-Much of the work becomes mechanical after you understand:
-
-* What the problem is asking
-* Which mathematical tool applies
-* What formula represents that tool
-* How to execute the calculation correctly
+- **Weeks 1–2 come before vectors, not after.** We started informally with 3D vectors and basic vector operations last time — that's genuinely useful groundwork (it directly feeds Week 4's "vector functions"), but the official Week 1 topic is actually level curves, limits, and continuity for `f(x, y)`. Worth circling back to that specific ground once we're done with vectors, rather than assuming Week 1 is "done."
+- **Week 6 repeats "tangent planes"** from Week 3 (which paired it with total differential) — likely Week 3 introduces the idea and Week 6 revisits it alongside normal lines. Not a syllabus typo, just don't be thrown by the apparent repeat.
+- **Week 10 also repeats material** ("functions of several variables") from Week 1 — post-midterm review before pushing into new territory (contour surfaces, double integrals).
+- **The real difficulty spike is Weeks 13–17** (triple/line/surface integrals → Green's/Stokes'/Divergence → Maxwell's equations). This is the same "vector calculus is where grades slip" pattern true of most multivariable courses — worth starting those weeks' problems earlier rather than saving them for the week they're due.
 
 ---
 
-### 2. Block 5 is often rushed
-
-**Vector Calculus** is frequently taught near the end of the semester, which means it can receive less practice time.
-
-The concepts themselves aren't necessarily harder, but there are many new relationships to remember:
-
-```text
-Line Integrals
-      ↓
-Green's Theorem
-      ↓
-Curl / Divergence
-      ↓
-Surface Integrals
-      ↓
-Stokes' Theorem
-      ↓
-Divergence Theorem
-```
-
-Getting familiar with this block early can prevent last-minute cramming.
-
----
-
-### 3. Block 3 has practical importance
-
-Several concepts from **Block 3** are directly connected to optimization and machine learning.
-
-For example:
-
-```text
-Partial Derivatives
-       ↓
-Gradient
-       ↓
-Directional Derivative
-       ↓
-Optimization
-       ↓
-Gradient Descent
-```
-
-**Lagrange multipliers** also provide the mathematical foundation for constrained optimization.
-
-These ideas can become useful beyond calculus, including areas such as:
-
-* Machine learning
-* Optimization
-* Infrastructure cost optimization
-* Resource allocation
-* ML-adjacent DevOps tooling
-
----
-
-# 🎯 Final Roadmap
-
-```text
-Block 1
-3D Space & Vectors
-        ↓
-Block 2
-Vector-Valued Functions
-        ↓
-Block 3
-Multivariable Differentiation
-        ↓
-Block 4
-Multiple Integration
-        ↓
-Block 5
-Vector Calculus
-```
-
-**Goal:** Build understanding progressively rather than memorizing formulas in isolation.
+*Generated from the official BSH-141 Weekly Distribution card, Fall 2026.*
