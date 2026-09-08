@@ -1,7 +1,5 @@
-# BSH-141 Multivariable Calculus — Semester README
+# BSH-141 Multivariable Calculus 
 **UET Mardan · Department of Computer Sciences · Fall 2026**
-
-> Confirms the earlier guess: **BSH-141 (shown as BSH240 on the class timetable) = Multivariable Calculus**, taught by **Mr. Abdul Kabir**, Monday 10:00–1:00, CR-5. The timetable's other Monday slot (BSH110x, Ms. Shazia) is therefore Professional Practices by elimination.
 
 ---
 
